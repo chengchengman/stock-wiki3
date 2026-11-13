@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台股科技產業與關鍵零組件知識庫 (Stock Wiki)</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Marked.js 用來渲染 Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+
+    <!-- 導覽列 -->
+    <header class="bg-slate-900 text-white shadow-md">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-wider">📈 Stock & Tech Wiki</h1>
+            <span class="text-xs bg-emerald-600 px-3 py-1 rounded-full font-medium">LLM Wiki 架構</span>
+        </div>
+    </header>
+
+    <!-- 主要內容區 -->
+    <main class="max-w-5xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+        
+        <!-- 側邊欄導覽 -->
+        <aside class="md:col-span-1 bg-white p-4 rounded-xl shadow-sm border border-gray-100 h-fit">
+            <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">知識庫分類</h3>
+            <ul class="space-y-2 text-sm">
+                <li>
+                    <a href="#" onclick="showContent('fiberglass')" class="block px-3 py-2 rounded-lg bg-emerald-50 text-emerald-700 font-medium hover:bg-emerald-100 transition">
+                        🧪 電子級玻纖布 (台玻、南亞)
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- 文章顯示區 -->
+        <section class="md:col-span-3 bg-white p-8 rounded-xl shadow-sm border border-gray-100 min-h-[500px]">
+            <div id="content-container" class="prose max-w-none">
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">歡迎來到台股產業知識庫</h2>
+                <p class="text-gray-600 mb-4">
+                    本專案採用 <strong>LLM Wiki</strong> 概念建立。你可以透過左側選單點擊不同的科技產業與關鍵零組件模組，深入了解台股供應鏈定位。
+                </p>
+                <div class="bg-amber-50 border-l-4 border-amber-400 p-4 text-amber-800 text-sm rounded-r-lg">
+                    💡 <strong>提示：</strong>點擊左側選單即可切換對應的產業與公司知識頁面！
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer class="text-center py-6 text-xs text-gray-400 border-t mt-12">
+        &copy; 2026 Stock & Tech Wiki. Powered by GitHub Pages & AGENTS.md workflow.
+    </footer>
+
+    <!-- 內嵌文章資料與渲染邏輯 -->
+    <script>
+        const wikiData = {
+            fiberglass: `
+# 玻纖布 (Fiberglass Cloth) 與台股供應鏈深度解析
+
+## 1. 產業定位與角色：電子產業的「骨架」與「強固絕緣基材」
+在科技業中，玻纖布本身不能運算也沒有發光特性，但它是所有高科技電子產品（如 AI 伺服器、筆電、網通設備、智慧型手機）中**印刷電路板 (PCB)** 不可或缺的「結構骨架」。
+
+* **物理角色（骨架與剛性）**：由極細的玻璃纖維經高溫融絲與精密織造而成，賦予 PCB 優異的機械強度、耐熱性與尺寸安定性，防止電路板受熱變形。
+* **電氣角色（絕緣載體）**：它與環氧樹脂結合後成為 **「玻纖布基板 (CCL，銅箔基板)」**，提供極佳的電氣絕緣性能，確保高頻高速訊號在電路中傳輸時不會短路或相互干擾。
+* **AI 時代的新定位（低損耗需求）**：隨著 AI 伺服器與高效能運算（HPC）對訊號傳輸速度的要求極高，傳統玻纖布已逐漸升級為低介電常數（Low Dk / Low Df）的**電子級超薄玻纖布**，成為決定 AI 伺服器主板傳輸品質的關鍵材料。
+
+---
+
+## 2. 供應鏈上下游結構
+1. **上游**：矽砂、石灰石、葉臘石等玻璃原料與玻纖紗拉絲廠。
+2. **中游（本篇重點）**：玻纖布織造廠（如 [台玻 (1802)](https://cool.ntu.edu.tw/courses)、[南亞 (1303)](https://cool.ntu.edu.tw/courses)）將紗織成布，再交給銅箔基板（CCL）廠（如聯茂、台光電、南亞）含浸樹脂。
+3. **下游**：PCB 板廠（如 [欣興 (3037)](https://cool.ntu.edu.tw/courses)、金像電）與終端 AI 伺服器 / 品牌廠。
+
+---
+
+## 3. 代表性台股公司
+* **台玻 [1802](https://cool.ntu.edu.tw/courses)**：台灣玻璃大廠，積極切入電子級玻纖布與高階低介電玻璃布領域，供應伺服器與載板需求。
+* **南亞 [1303](https://cool.ntu.edu.tw/courses)**：台塑集團旗下的電子材料巨頭，從上游玻纖布、環氧樹脂到下游銅箔基板（CCL）具備完整的垂直整合優勢。
+            `
+        };
+
+        function showContent(key) {
+            if (wikiData[key]) {
+                document.getElementById('content-container').innerHTML = marked.parse(wikiData[key]);
+            }
+        }
+    </script>
+</body>
+</html>
